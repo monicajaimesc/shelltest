@@ -1,19 +1,32 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "shell.h"
 
-int main()
+/**
+ *get_line - Reads an entire line from stream 
+ *@lineptr:strores the address buffer of the line into fd
+ *@size:store the address of the buffer from the stream read
+ *@fd:file descriptor where to read input
+ *Return: # characters (bytes) read, delimiter but not null bytes 
+ */
+
+ssize_t get_line(char **lineptr, size_t *size, int fd)
 {
-	/*first character in the buffer (address)*/
-/*If *lineptr is NULL, then getline() will allocate a buffer for storing the line*/
-	char *line = NULL;
-	size_t bufsize = 0;
-	int characters;
 	
-	printf("maga~$");
-	characters = getline(&line, &bufsize, stdin);/*allocate a buffer for us*/
-	printf("%d\n", characters);
-	printf("%s\n", line);
+	
+	ssize_t _read; /*bytes*/
+	
 
-	free(line);
-	exit(EXIT_SUCCESS);
+	_read = read(*lineptr, *size, fd)
+	
+	if (_read == 0)
+		return (-1);
+
+	else if (_read == -1)
+	{
+		free(*lineptr);
+		perror("input don't read it");
+		exit(-1);
+	}
+
+	(*lineptr)[_read] = '\0';
+	return (_read);
 }
