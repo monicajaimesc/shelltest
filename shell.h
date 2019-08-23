@@ -7,7 +7,7 @@
 #include <stdlib.h>/*EXIT & NULL */
 #include <sys/wait.h>/*declaration for waiting*/
 #include <sys/stat.h>/*getting information about file attributes*/
-
+#define IDENT " \t\r\n\a"
 /* prototypes the main shell*/
 
 
